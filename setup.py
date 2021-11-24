@@ -5,7 +5,7 @@ with open("README.md", "r") as readme_file:
 
 setup(
     name="axoproj",
-    version="0.0.2",
+    version="0.0.3",
     author="Alois de Valon",
     author_email="aloisdevalon@gmail.com",
     description="A package to create P.P.V datacube from simple models",
