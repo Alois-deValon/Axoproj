@@ -164,5 +164,3 @@ def create_datacube(model_class,ra,dec,vrad,incl=90,pa=0,
         map_layer=convolve(ra,dec,vrad,map_layer,**convolution)
 
     return map_layer
-
-if __name__ == '__main__':
