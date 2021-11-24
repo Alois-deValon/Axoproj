@@ -72,8 +72,6 @@ def variation_wiggling(wiggling_param,x,y,z,phi,vr,vz,vphi):
         vphi_wiggz=-vphi_projx*np.sin(angle_wigg)
         vphi_wiggy=vphi_projx*np.cos(angle_wigg)*np.sin(phi_wigg)+vphi_projy*np.cos(phi_wigg)
         vphi_wigg=[vphi_wiggy,vphi_wiggz]
-        breakpoint()
-
     else:
         z_wigg=z
         x_wigg=x
