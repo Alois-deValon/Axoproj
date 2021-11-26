@@ -1,4 +1,4 @@
-from init import *
+from axoproj.classes import *
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
