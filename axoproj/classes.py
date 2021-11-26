@@ -5,6 +5,9 @@ from scipy.special import cbrt
 
 
 
+def lin_array(vec):
+    return np.isclose(np.max(np.diff(vec)),np.min(np.diff(vec)))
+
 def poly2(a,b,c,x):
     return a*np.power(x,2)+b*np.power(x,1)+c
 def polyn(param,x):
