@@ -98,7 +98,9 @@ def variation_pa(x,z,pa):
 def create_datacube(model_class,ra,dec,vrad,incl=90,pa=0,
                     wiggling_param={"angle":0 , "period": 0, "phi0":0},
                     convolution={"beamx": 0, "beamy": 0,"beamv":0, "pa":0}):
-
+	
+    if not(lin_array(ra)) or not(lin_array(dec)) or not(lin_array(vrad)):
+        sys.exit('Error : RA, DEC and VRAD must be evenly spaced')
     min_pix=min(np.abs(np.diff(ra)[0]),np.abs(np.diff(dec)[0]))
     phi_1D,param=model_class.create_profile()
     ii=incl*np.pi/180
