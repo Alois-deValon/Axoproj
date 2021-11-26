@@ -5,9 +5,6 @@ import matplotlib.pyplot as plt
 from scipy import signal
 import os
 from tqdm import tqdm
-from time import sleep
-import timeit
-from mpl_toolkits import axes_grid1
 from scipy.special import cbrt
 from scipy.ndimage import gaussian_filter1d
 from scipy.signal import convolve2d
