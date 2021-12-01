@@ -3,7 +3,7 @@ ______
 
 AxOProj (Axisymmetric Outflow Projection) was developed by Aloïs de Valon at the *Institut de Planétologie et d'Astrophysique de Grenoble* (IPAG).
 
-This code create synthethic Position-Position-Velocity datacube of simple models, taking into account projection effects. It is written entirely in Python 3
+This code creates synthethic Position-Position-Velocity datacubes of simple models, taking into account projection effects. It is written entirely in Python 3
 
 
 ## Publication
@@ -17,4 +17,4 @@ Axoproj is available on [Pypi](https://pypi.org/project/axoproj/) and could be i
 
 ## CONTACT
 ___
-If you have  any queries or questions related to AxOProj, please do not hesitate to contact me [here](aloisdevalon@gmail.com)
+If you have any queries or questions related to AxOProj, please do not hesitate to contact me [here](aloisdevalon@gmail.com)
