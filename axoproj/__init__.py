@@ -7,4 +7,4 @@ from axoproj.classes import Your_model
 from axoproj.funcs import create_datacube
 from axoproj.funcs import i_near
 
-__version__ = "0.0.5"
+__version__ = "1.0.0"
