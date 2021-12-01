@@ -65,7 +65,6 @@ def find_cubic_roots(
 ):
 
     a, c, d = a + 0j, c + 0j, d + 0j
-    all_ = a != np.pi
 
     Q = (3 * a * c) / (9 * a ** 2)
     R = (-27 * a ** 2 * d) / (54 * a ** 3)
@@ -664,7 +663,6 @@ class BS_model:
         rho = self.rho
         vj = self.vj
         zj = self.zj
-        model = self.model
         alpha = self.alpha
         dl = self.step
         mH = 1.66054e-27
@@ -694,8 +692,8 @@ class BS_model:
             vr = v0 / (1 + 3 / gamma * np.power(r / L0, 2))
             vz = vj / (1 + 3 / gamma * np.power(r / L0, 2))
         elif self.model == "post-shock":
-            vr_ps = vj * 3 * np.power(r / L0, 2) / (1 + 9 * np.power(r / L0, 4))
-            vz_ps = vj / (1 + 9 * np.power(r / L0, 4))
+            vr = vj * 3 * np.power(r / L0, 2) / (1 + 9 * np.power(r / L0, 4))
+            vz = vj / (1 + 9 * np.power(r / L0, 4))
         vphi = np.zeros_like(z)
         dv = dl * r * dl
         I = dv * np.power(r, -alpha)
@@ -761,7 +759,6 @@ class Your_model:
             sys.exit("Error : all input must be arrays.")
         else:
             if not (are_same_size([r, z, vr, vz, vphi, i])):
-                breakpoint()
                 sys.exit("Error : all input must have the same size.")
             elif len(np.shape(r)) == 1:
                 r = np.expand_dims(np.asarray(r), axis=0)

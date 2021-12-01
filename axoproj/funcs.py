@@ -1,16 +1,12 @@
 import os
 import sys
-import time
 
-import matplotlib.pyplot as plt
 import numpy as np
-from scipy import signal
 from scipy.ndimage import gaussian_filter1d
 from scipy.signal import convolve2d
-from scipy.special import cbrt
 from tqdm import tqdm
 
-from axoproj.classes import *
+from axoproj.classes import lin_array
 
 
 def i_near(array, value):
@@ -56,7 +52,7 @@ def variation_wiggling(wiggling_param, x, y, z, phi, vr, vz, vphi):
     vphi_projx = vphi * np.sin(phi)
     vphi_projy = vphi * np.cos(phi)
 
-    #### Wiggling_effect
+    # Wiggling_effect
     if wiggling_param["angle"] != 0:
         angle_wigg = wiggling_param["angle"] * np.pi / 180.0
         tau_wigg = wiggling_param["period"] * 365 * 3600.0 * 24.0
@@ -127,13 +123,16 @@ def create_datacube(
     vrad,
     incl=90,
     pa=0,
-    wiggling_param={"angle": 0, "period": 0, "phi0": 0},
-    convolution={"beamx": 0, "beamy": 0, "beamv": 0, "pa": 0},
+    wiggling_param=None,
+    convolution=None,
 ):
 
+    if wiggling_param is None:
+        wiggling_param = {"angle": 0, "period": 0, "phi0": 0}
+    if convolution is None:
+        convolution = {"beamx": 0, "beamy": 0, "beamv": 0, "pa": 0}
     if not (lin_array(ra)) or not (lin_array(dec)) or not (lin_array(vrad)):
         sys.exit("Error : RA, DEC and VRAD must be evenly spaced")
-    min_pix = min(np.abs(np.diff(ra)[0]), np.abs(np.diff(dec)[0]))
     phi_1D, param = model_class.create_profile()
     ii = incl * np.pi / 180
     pa = pa * np.pi / 180
@@ -150,20 +149,20 @@ def create_datacube(
     phi = np.broadcast_to(
         phi_1D[:, np.newaxis, np.newaxis], (len(phi_1D), shape_start[0], shape_start[1])
     )
-    ##### 3D CREATION : OUTFLOW REFERENTIAL
+    # 3D CREATION : OUTFLOW REFERENTIAL
     x = r * np.cos(phi)
     y = r * np.sin(phi)
     x, y, z, vz, vr, vphi = variation_wiggling(
         wiggling_param, x, y, z, phi, vr, vz, vphi
     )
-    ##### Calcul de projection due a l'inclinaison
+    # Calcul de projection due a l'inclinaison
     del phi
     x, z, vproj = variation_incl(x, y, z, ii, vr, vz, vphi)
 
     del y, vr, vz, vphi
     x, z = variation_pa(x, z, pa)
 
-    ##### Rotation par le pa
+    # Rotation par le pa
     x = x.flatten(order="F")
     z = z.flatten(order="F")
     vproj = vproj.flatten(order="F")
