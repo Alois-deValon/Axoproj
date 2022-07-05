@@ -66,9 +66,9 @@ def find_cubic_roots(
 
     a, c, d = a + 0j, c + 0j, d + 0j
 
-    Q = (3 * a * c) / (9 * a ** 2)
-    R = (-27 * a ** 2 * d) / (54 * a ** 3)
-    D = Q ** 3 + R ** 2
+    Q = (3 * a * c) / (9 * a**2)
+    R = (-27 * a**2 * d) / (54 * a**3)
+    D = Q**3 + R**2
     S = 0  # NEW CALCULATION FOR S STARTS HERE
     if np.isreal(R + np.sqrt(D)):
         S = cbrt(np.real(R + np.sqrt(D)))
