@@ -35,7 +35,7 @@ def convolve(ra, dec, vrad, array, beamx, beamy, beamv, pa):
                     j - (int(dim_psf / 2.0))
                 ) * np.sin(pa)
                 PSF[i, j] = np.exp(
-                    -(x1 ** 2 / (2 * minor ** 2) + y1 ** 2 / (2 * major ** 2))
+                    -(x1**2 / (2 * minor**2) + y1**2 / (2 * major**2))
                 )
         PSF = PSF / np.amax(PSF)
         for i in tqdm(range(len(vrad))):
@@ -99,7 +99,6 @@ def variation_wiggling(wiggling_param, x, y, z, phi, vr, vz, vphi):
 
 
 def variation_incl(x, y, z, incl, vr, vz, vphi):
-
     zp = -np.cos(incl) * y + np.sin(incl) * z
     xp = x
 
@@ -126,7 +125,6 @@ def create_datacube(
     wiggling_param=None,
     convolution=None,
 ):
-
     if wiggling_param is None:
         wiggling_param = {"angle": 0, "period": 0, "phi0": 0}
     if convolution is None:
