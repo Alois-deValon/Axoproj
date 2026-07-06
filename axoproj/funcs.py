@@ -34,9 +34,7 @@ def convolve(ra, dec, vrad, array, beamx, beamy, beamv, pa):
                 y1 = (i - (int(dim_psf / 2.0))) * np.cos(pa) - (
                     j - (int(dim_psf / 2.0))
                 ) * np.sin(pa)
-                PSF[i, j] = np.exp(
-                    -(x1 ** 2 / (2 * minor ** 2) + y1 ** 2 / (2 * major ** 2))
-                )
+                PSF[i, j] = np.exp(-(x1**2 / (2 * minor**2) + y1**2 / (2 * major**2)))
         PSF = PSF / np.amax(PSF)
         for i in tqdm(range(len(vrad))):
             array[:, :, i] = convolve2d(array[:, :, i], PSF, mode="same")
